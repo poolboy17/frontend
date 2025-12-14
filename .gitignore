@@ -36,6 +36,9 @@ yarn-error.log*
 .next
 .faust
 
+# Allow data/types.ts to be committed
+!src/data/types.ts
+
 ## Build artifacts for sitemaps
 /public/sitemap*.xml
 /public/robots.txt
