@@ -4,6 +4,7 @@ const { createSecureHeaders } = require('next-secure-headers')
 /**
  * @type {import('next').NextConfig}
  **/
+const path = require('path');
 module.exports = withFaust({
 	trailingSlash: true,
 	reactStrictMode: true,
@@ -100,5 +101,12 @@ module.exports = withFaust({
 				}),
 			},
 		]
+	},
+	webpack: (config) => {
+		config.resolve.alias = {
+			...(config.resolve.alias || {}),
+			'@': path.resolve(__dirname, 'src'),
+		};
+		return config;
 	},
 })
