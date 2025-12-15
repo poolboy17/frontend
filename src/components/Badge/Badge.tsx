@@ -1,8 +1,7 @@
-import { TwMainColor } from '@/data/types'
-import { Route } from '@/data/types'
-import getColorClass from '@/utils/getColorClass'
-import Link from 'next/link'
-import { FC, ReactNode } from 'react'
+import { Route, TwMainColor } from '@/data/types';
+import getColorClass from '@/utils/getColorClass';
+import Link from 'next/link';
+import { FC, ReactNode } from 'react';
 
 export interface BadgeProps {
 	className?: string
