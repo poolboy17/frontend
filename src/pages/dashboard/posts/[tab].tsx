@@ -1,33 +1,33 @@
-import { GetStaticPaths, GetStaticPropsContext } from "next";
-import {
-  FaustPage,
-  getApolloAuthClient,
-  getNextStaticProps,
-} from "@faustwp/core";
 import { gql } from "@/__generated__";
 import { PostStatusEnum } from "@/__generated__/graphql";
-import { GET_POSTS_FIRST_COMMON_FOR_DASHBOARD } from "@/contains/contants";
-import React, { useEffect } from "react";
-import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
-import { useRouter } from "next/router";
-import { useLazyQuery } from "@apollo/client";
-import MyImage from "@/components/MyImage";
-import ncFormatDate from "@/utils/formatDate";
-import CategoryBadgeList from "@/components/CategoryBadgeList/CategoryBadgeList";
-import PostActionDropdown from "@/components/PostActionDropdown/PostActionDropdown";
 import Badge from "@/components/Badge/Badge";
-import CircleLoading from "@/components/Loading/CircleLoading";
-import Link from "next/link";
+import ButtonPrimary from "@/components/Button/ButtonPrimary";
+import CategoryBadgeList from "@/components/CategoryBadgeList/CategoryBadgeList";
 import Empty from "@/components/Empty";
 import Error from "@/components/Error";
-import ButtonPrimary from "@/components/Button/ButtonPrimary";
-import errorHandling from "@/utils/errorHandling";
+import CircleLoading from "@/components/Loading/CircleLoading";
+import MyImage from "@/components/MyImage";
+import PostActionDropdown from "@/components/PostActionDropdown/PostActionDropdown";
 import DashboardLayout, {
-  TDashBoardPostTab,
+    TDashBoardPostTab,
 } from "@/container/DashboardLayout";
-import { useSelector } from "react-redux";
+import { GET_POSTS_FIRST_COMMON_FOR_DASHBOARD } from "@/contains/contants";
 import { RootState } from "@/stores/store";
+import errorHandling from "@/utils/errorHandling";
+import ncFormatDate from "@/utils/formatDate";
+import { getPostDataFromPostFragment } from "@/utils/getPostDataFromPostFragment";
 import getTrans from "@/utils/getTrans";
+import { useLazyQuery } from "@apollo/client";
+import {
+    FaustPage,
+    getApolloAuthClient,
+    getNextStaticProps,
+} from "@faustwp/core";
+import { GetStaticPaths, GetStaticPropsContext } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Page: FaustPage<{}> = () => {
   const { isReady, isAuthenticated } = useSelector(
@@ -71,15 +71,19 @@ const Page: FaustPage<{}> = () => {
           method: process.env.NEXT_PUBLIC_SITE_API_METHOD || "GET",
         },
       },
-      onError: (error) => {
-        if (refetchTimes > 3) {
-          errorHandling(error);
-        }
-        setRefetchTimes(refetchTimes + 1);
-        getPostsOfViewerResult.refetch();
-      },
     }
   );
+
+  // Apollo 3.14+ error handling: useEffect for errors
+  React.useEffect(() => {
+    if (getPostsOfViewerResult.error && refetchTimes > 3) {
+      errorHandling(getPostsOfViewerResult.error);
+    }
+    if (getPostsOfViewerResult.error) {
+      setRefetchTimes(refetchTimes + 1);
+      getPostsOfViewerResult.refetch();
+    }
+  }, [getPostsOfViewerResult.error]);
 
   useEffect(() => {
     if (isAuthenticated === false) {

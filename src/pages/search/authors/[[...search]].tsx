@@ -1,24 +1,24 @@
-import { GetStaticPropsContext } from 'next'
-import { FaustPage, getNextStaticProps } from '@faustwp/core'
 import { gql } from '@/__generated__'
 import {
-	NcgeneralSettingsFieldsFragmentFragment,
-	SearchPageQueryGetUsersBySearchQuery,
+    NcgeneralSettingsFieldsFragmentFragment,
+    SearchPageQueryGetUsersBySearchQuery,
 } from '@/__generated__/graphql'
-import { GET_USERS_FIRST_COMMON, REVALIDATE_TIME } from '@/contains/contants'
-import React from 'react'
 import ButtonPrimary from '@/components/Button/ButtonPrimary'
-import Empty from '@/components/Empty'
-import { useRouter } from 'next/router'
 import CardAuthorBox from '@/components/CardAuthorBox/CardAuthorBox'
+import { TCategoryCardFull } from '@/components/CardCategory1/CardCategory1'
+import Empty from '@/components/Empty'
+import PageLayout from '@/container/PageLayout'
+import SearchPageLayout from '@/container/SearchPageLayout'
+import { GET_USERS_FIRST_COMMON, REVALIDATE_TIME } from '@/contains/contants'
+import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
+import errorHandling from '@/utils/errorHandling'
+import getTrans from '@/utils/getTrans'
 import { getUserDataFromUserCardFragment } from '@/utils/getUserDataFromUserCardFragment'
 import { useLazyQuery } from '@apollo/client'
-import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
-import PageLayout from '@/container/PageLayout'
-import errorHandling from '@/utils/errorHandling'
-import { TCategoryCardFull } from '@/components/CardCategory1/CardCategory1'
-import SearchPageLayout from '@/container/SearchPageLayout'
-import getTrans from '@/utils/getTrans'
+import { FaustPage, getNextStaticProps } from '@faustwp/core'
+import { GetStaticPropsContext } from 'next'
+import { useRouter } from 'next/router'
+import React from 'react'
 
 const Page: FaustPage<SearchPageQueryGetUsersBySearchQuery> = (props) => {
 	const router = useRouter()
@@ -58,11 +58,15 @@ const Page: FaustPage<SearchPageQueryGetUsersBySearchQuery> = (props) => {
 				search,
 				first: GET_USERS_FIRST_COMMON,
 			},
-			onError: (error) => {
-				errorHandling(error)
-			},
 		},
 	)
+
+	// Apollo 3.14+ error handling: useEffect for errors
+	React.useEffect(() => {
+		if (getUsersBySearchResult.error) {
+			errorHandling(getUsersBySearchResult.error);
+		}
+	}, [getUsersBySearchResult.error]);
 
 	const handleClickShowMore = () => {
 		if (!getUsersBySearchResult.called) {
@@ -71,6 +75,11 @@ const Page: FaustPage<SearchPageQueryGetUsersBySearchQuery> = (props) => {
 					search,
 					after: initPageInfo?.endCursor,
 				},
+				context: {
+					fetchOptions: {
+						method: process.env.NEXT_PUBLIC_SITE_API_METHOD || 'GET',
+					},
+				},
 			})
 		}
 
@@ -78,6 +87,11 @@ const Page: FaustPage<SearchPageQueryGetUsersBySearchQuery> = (props) => {
 			variables: {
 				search,
 				after: getUsersBySearchResult.data?.users?.pageInfo.endCursor,
+			},
+			context: {
+				fetchOptions: {
+					method: process.env.NEXT_PUBLIC_SITE_API_METHOD || 'GET',
+				},
 			},
 			updateQuery: (prev, { fetchMoreResult }) => {
 				if (!fetchMoreResult || !fetchMoreResult.users?.nodes) {

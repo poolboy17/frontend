@@ -1,25 +1,25 @@
-import { useLazyQuery } from '@apollo/client'
-import { NcmazFaustBlockMagazineFragmentFragment } from '../__generated__/graphql'
-import { WordPressBlock } from '@faustwp/blocks'
-import Empty from '@/components/Empty'
-import ButtonPrimary from '@/components/Button/ButtonPrimary'
-import { QUERY_GET_POSTS_BY } from '@/fragments/queries'
-import updatePostFromUpdateQuery from '@/utils/updatePostFromUpdateQuery'
 import BackgroundSection from '@/components/BackgroundSection/BackgroundSection'
-import { TPostCard } from '@/components/Card2/Card2'
-import SectionHero3 from '@/components/Sections/SectionHero3'
-import dynamic from 'next/dynamic'
-import useGetPostsNcmazMetaByIds from '@/hooks/useGetPostsNcmazMetaByIds'
-import SectionMagazine5 from '../components/Sections/SectionMagazine5'
-import SectionMagazine8 from '../components/Sections/SectionMagazine8'
-import SectionMagazine2 from '../components/Sections/SectionMagazine2'
-import SectionMagazine6 from '../components/Sections/SectionMagazine6'
-import errorHandling from '@/utils/errorHandling'
-import { useEffect, useState } from 'react'
-import getTrans from '@/utils/getTrans'
-import { LinkProps } from 'next/link'
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import Button from '@/components/Button/Button'
+import ButtonPrimary from '@/components/Button/ButtonPrimary'
+import { TPostCard } from '@/components/Card2/Card2'
+import Empty from '@/components/Empty'
+import SectionHero3 from '@/components/Sections/SectionHero3'
+import { QUERY_GET_POSTS_BY } from '@/fragments/queries'
+import useGetPostsNcmazMetaByIds from '@/hooks/useGetPostsNcmazMetaByIds'
+import errorHandling from '@/utils/errorHandling'
+import getTrans from '@/utils/getTrans'
+import updatePostFromUpdateQuery from '@/utils/updatePostFromUpdateQuery'
+import { useLazyQuery } from '@apollo/client'
+import { WordPressBlock } from '@faustwp/blocks'
+import { ArrowRightIcon } from '@heroicons/react/24/outline'
+import dynamic from 'next/dynamic'
+import { LinkProps } from 'next/link'
+import { useEffect, useState } from 'react'
+import { NcmazFaustBlockMagazineFragmentFragment } from '../__generated__/graphql'
+import SectionMagazine2 from '../components/Sections/SectionMagazine2'
+import SectionMagazine5 from '../components/Sections/SectionMagazine5'
+import SectionMagazine6 from '../components/Sections/SectionMagazine6'
+import SectionMagazine8 from '../components/Sections/SectionMagazine8'
 
 const DynamicSectionMagazine1 = dynamic(
 	() => import('../components/Sections/SectionMagazine1'),
@@ -82,10 +82,14 @@ const NcmazFaustBlockMagazineClient: WordPressBlock<
 					method: process.env.NEXT_PUBLIC_SITE_API_METHOD || 'GET',
 				},
 			},
-			onError: (error) => {
-				errorHandling(error)
-			},
 		})
+
+	// Apollo 3.14+ error handling: useEffect for errors
+	useEffect(() => {
+		if (getPostByVariablesFromSSRResult.error) {
+			errorHandling(getPostByVariablesFromSSRResult.error);
+		}
+	}, [getPostByVariablesFromSSRResult.error]);
 
 	const T = getTrans()
 
