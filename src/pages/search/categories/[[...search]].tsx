@@ -1,26 +1,26 @@
-import { GetStaticPropsContext } from 'next'
-import { FaustPage, getNextStaticProps } from '@faustwp/core'
 import { gql } from '@/__generated__'
 import {
-	NcgeneralSettingsFieldsFragmentFragment,
-	NcmazFcCategoryFullFieldsFragmentFragment,
-	SearchPageQueryGetCategoriesBySearchQuery,
+    NcgeneralSettingsFieldsFragmentFragment,
+    NcmazFcCategoryFullFieldsFragmentFragment,
+    SearchPageQueryGetCategoriesBySearchQuery,
 } from '@/__generated__/graphql'
-import {
-	GET_CATEGORIES_FIRST_COMMON,
-	REVALIDATE_TIME,
-} from '@/contains/contants'
-import React from 'react'
 import ButtonPrimary from '@/components/Button/ButtonPrimary'
-import Empty from '@/components/Empty'
-import { useRouter } from 'next/router'
-import { useLazyQuery } from '@apollo/client'
 import CardCategory4 from '@/components/CardCategory4/CardCategory4'
-import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
+import Empty from '@/components/Empty'
 import PageLayout from '@/container/PageLayout'
-import errorHandling from '@/utils/errorHandling'
 import SearchPageLayout from '@/container/SearchPageLayout'
+import {
+    GET_CATEGORIES_FIRST_COMMON,
+    REVALIDATE_TIME,
+} from '@/contains/contants'
+import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
+import errorHandling from '@/utils/errorHandling'
 import getTrans from '@/utils/getTrans'
+import { useLazyQuery } from '@apollo/client'
+import { FaustPage, getNextStaticProps } from '@faustwp/core'
+import { GetStaticPropsContext } from 'next'
+import { useRouter } from 'next/router'
+import React from 'react'
 
 const Page: FaustPage<SearchPageQueryGetCategoriesBySearchQuery> = (props) => {
 	const router = useRouter()
@@ -58,12 +58,15 @@ const Page: FaustPage<SearchPageQueryGetCategoriesBySearchQuery> = (props) => {
 				search,
 				first: GET_CATEGORIES_FIRST_COMMON,
 			},
-			onError: (error) => {
-				errorHandling(error)
-			},
 		},
 	)
 
+	// Apollo 3.14+ error handling: useEffect for errors
+	React.useEffect(() => {
+		if (getCategoriesBySearchResult.error) {
+			errorHandling(getCategoriesBySearchResult.error);
+		}
+	}, [getCategoriesBySearchResult.error]);
 	const handleClickShowMore = () => {
 		if (!getCategoriesBySearchResult.called) {
 			return getCategoriesBySearch({
@@ -94,6 +97,17 @@ const Page: FaustPage<SearchPageQueryGetCategoriesBySearchQuery> = (props) => {
 						pageInfo: fetchMoreResult.categories?.pageInfo,
 					},
 				}
+			},
+		})
+		getCategoriesBySearchResult.fetchMore({
+			variables: {
+				search,
+				after: getCategoriesBySearchResult.data?.categories?.pageInfo.endCursor,
+			},
+			context: {
+				fetchOptions: {
+					method: process.env.NEXT_PUBLIC_SITE_API_METHOD || 'GET',
+				},
 			},
 		})
 	}
