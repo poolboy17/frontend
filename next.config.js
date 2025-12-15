@@ -5,7 +5,7 @@ const { createSecureHeaders } = require('next-secure-headers')
  * @type {import('next').NextConfig}
  **/
 const path = require('path');
-module.exports = withFaust({
+export default withFaust({
 	trailingSlash: true,
 	reactStrictMode: true,
 	typedRoutes: false,
