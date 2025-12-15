@@ -550,7 +550,7 @@ const PlayerContent: FC<PlayerContentProps> = ({
 						max={0.999999}
 						step="any"
 						value={volume}
-						onChange={e => {
+						onChange={(e) => {
 							handleVolumeChange(parseFloat(e.currentTarget.value))
 							handleSetMuted(false)
 						}}

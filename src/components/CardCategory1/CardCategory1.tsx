@@ -5,8 +5,7 @@ import { getCatgoryDataFromCategoryFragment } from '@/utils/getCatgoryDataFromCa
 import { NcmazFcCategoryFullFieldsFragmentFragment } from '@/__generated__/graphql'
 import getTrans from '@/utils/getTrans'
 
-export interface TCategoryCardFull
-	extends NcmazFcCategoryFullFieldsFragmentFragment {}
+export interface TCategoryCardFull extends NcmazFcCategoryFullFieldsFragmentFragment {}
 export interface CommonTermCardProps {
 	className?: string
 	term: TCategoryCardFull

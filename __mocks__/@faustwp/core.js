@@ -1,4 +1,4 @@
 module.exports = {
-  ...jest.requireActual('@faustwp/core'),
-  getWpHostname: () => 'localhost',
-};
+	...jest.requireActual('@faustwp/core'),
+	getWpHostname: () => 'localhost',
+}

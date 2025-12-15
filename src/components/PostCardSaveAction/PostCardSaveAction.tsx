@@ -4,8 +4,10 @@ import getTrans from '@/utils/getTrans'
 
 const T = getTrans()
 
-export interface PostCardSaveActionProps
-	extends Omit<NcBookmarkProps, 'containerClassName'> {
+export interface PostCardSaveActionProps extends Omit<
+	NcBookmarkProps,
+	'containerClassName'
+> {
 	className?: string
 	bookmarkClass?: string
 	readingTime?: number

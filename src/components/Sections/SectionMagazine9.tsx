@@ -26,7 +26,7 @@ const SectionMagazine9: FC<SectionMagazine9Props> = ({
 			>
 				{posts
 					.filter((_, i) => i > 2)
-					.map(p => (
+					.map((p) => (
 						<Card15Podcast key={p.databaseId} post={p} />
 					))}
 			</div>

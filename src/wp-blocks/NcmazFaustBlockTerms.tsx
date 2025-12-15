@@ -13,9 +13,7 @@ const DynamicSectionGridCategoryBox = dynamic(
 
 const DynamicSectionSliderNewCategories = dynamic(
 	() =>
-		import(
-			'../components/SectionSliderNewCategories/SectionSliderNewCategories'
-		),
+		import('../components/SectionSliderNewCategories/SectionSliderNewCategories'),
 )
 
 const NcmazFaustBlockTerms: WordPressBlock<

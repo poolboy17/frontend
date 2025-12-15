@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const TailwindCss = () => {
-  return <div className="pb-7 gap-14 lg:gap-10">TailwindCss?</div>;
-};
+	return <div className="gap-14 pb-7 lg:gap-10">TailwindCss?</div>
+}
 
-export default TailwindCss;
+export default TailwindCss

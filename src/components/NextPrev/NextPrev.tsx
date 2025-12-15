@@ -31,7 +31,7 @@ const NextPrev: FC<NextPrevProps> = ({
 					} flex items-center justify-center rounded-full border-neutral-200 dark:border-neutral-600 ${
 						focus === 'left' ? 'border-2' : ''
 					}`}
-					onClick={e => {
+					onClick={(e) => {
 						e.preventDefault()
 						onClickPrev()
 					}}
@@ -67,7 +67,7 @@ const NextPrev: FC<NextPrevProps> = ({
 					className={`${btnClassName} flex items-center justify-center rounded-full border-neutral-200 dark:border-neutral-600 ${
 						focus === 'right' ? 'border-2' : ''
 					}`}
-					onClick={e => {
+					onClick={(e) => {
 						e.preventDefault()
 						onClickNext()
 					}}

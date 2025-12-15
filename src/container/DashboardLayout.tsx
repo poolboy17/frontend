@@ -190,7 +190,7 @@ export default function DashboardLayout({ children }: Props) {
 					<ul role="list" className="relative mt-1 space-y-1 ps-[32px]">
 						<div className="absolute bottom-8 start-[22px] top-0 border-s border-neutral-200 dark:border-neutral-600"></div>
 
-						{item.children.map(child => {
+						{item.children.map((child) => {
 							const isCurrent = child.name === currentTab
 							return (
 								<li key={child.name} className="relative">
@@ -233,7 +233,7 @@ export default function DashboardLayout({ children }: Props) {
 							<a
 								href="#"
 								className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-neutral-200"
-								onClick={e => {
+								onClick={(e) => {
 									e.preventDefault()
 									logout('/')
 								}}
@@ -256,7 +256,7 @@ export default function DashboardLayout({ children }: Props) {
 			<form
 				className="relative hidden flex-1 lg:flex"
 				action="#"
-				onSubmit={e => {
+				onSubmit={(e) => {
 					e.preventDefault()
 					const search = e.currentTarget.search.value
 					router.push(`/search/posts/${search}`)

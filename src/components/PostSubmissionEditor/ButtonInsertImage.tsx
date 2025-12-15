@@ -47,7 +47,7 @@ const ButtonInsertImage: FC<ButtonInsertImageProps> = ({
 		setisLoading(true)
 
 		isImageFromUrl(url)
-			.then(value => {
+			.then((value) => {
 				if (!value) {
 					toast.error(
 						T.pageSubmission['The url is not an image, please try again.'],
@@ -58,7 +58,7 @@ const ButtonInsertImage: FC<ButtonInsertImageProps> = ({
 				setImageState({ sourceUrl: url, altText: alt, id: '' })
 				closeModal()
 			})
-			.catch(error => {
+			.catch((error) => {
 				toast.error(`Error: ${error.message}`)
 			})
 			.finally(() => {

@@ -39,8 +39,8 @@ const PostFeaturedMedia: FC<PostFeaturedMediaProps> = ({
 	} = getPostDataFromPostFragment(post)
 
 	const galleryImgs = [featuredImage, ...(ncmazGalleryImgs || [])]
-		.map(img => img?.sourceUrl)
-		.filter(img => !!img) as string[]
+		.map((img) => img?.sourceUrl)
+		.filter((img) => !!img) as string[]
 
 	const isPostMedia = () => postType === 'video' || postType === 'audio'
 
@@ -52,7 +52,7 @@ const PostFeaturedMedia: FC<PostFeaturedMediaProps> = ({
 		return (
 			<GallerySlider
 				href={uri || ''}
-				galleryImgs={galleryImgs.filter(img => !!img) as string[]}
+				galleryImgs={galleryImgs.filter((img) => !!img) as string[]}
 				className="absolute inset-0 z-10"
 				galleryClass="absolute inset-0"
 				ratioClass="absolute inset-0"

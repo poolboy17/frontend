@@ -29,7 +29,7 @@ const CreateBtn: FC<Props> = ({ className = 'hidden md:block ' }) => {
 			<Link
 				href="/submission"
 				className={`focus-visible:ring-ring group inline-flex h-10 items-center justify-center rounded-xl px-3 py-1.5 text-sm font-medium text-neutral-900 opacity-80 hover:bg-neutral-100 hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 sm:h-12 dark:text-neutral-200 dark:hover:bg-neutral-800`}
-				onClick={e => {
+				onClick={(e) => {
 					if (!isAuthenticated) {
 						e.preventDefault()
 						if (!isReady) {

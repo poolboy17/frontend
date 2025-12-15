@@ -1,17 +1,17 @@
-import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import { FaustPage } from "@faustwp/core";
-import { TDashBoardPostTab } from "@/container/DashboardLayout";
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
+import { FaustPage } from '@faustwp/core'
+import { TDashBoardPostTab } from '@/container/DashboardLayout'
 
 const Page: FaustPage<{}> = () => {
-  const router = useRouter();
+	const router = useRouter()
 
-  useEffect(() => {
-    const tab: TDashBoardPostTab = "published";
-    router.push("/dashboard/posts/" + tab);
-  }, []);
+	useEffect(() => {
+		const tab: TDashBoardPostTab = 'published'
+		router.push('/dashboard/posts/' + tab)
+	}, [])
 
-  return <div></div>;
-};
+	return <div></div>
+}
 
-export default Page;
+export default Page

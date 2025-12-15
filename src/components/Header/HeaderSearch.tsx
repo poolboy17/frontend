@@ -35,7 +35,7 @@ export const HeaderSearchForm2 = () => {
 		return (
 			<form
 				className="group relative"
-				onSubmit={e => {
+				onSubmit={(e) => {
 					e.preventDefault()
 					router.push('/search/posts/' + e.currentTarget.search.value || '')
 				}}

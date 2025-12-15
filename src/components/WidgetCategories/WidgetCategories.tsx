@@ -29,7 +29,7 @@ const WidgetCategories: FC<WidgetCategoriesProps> = ({
 							<CardCategory6Skeleton className="p-4 xl:p-5" />
 						</>
 					) : (
-						categories?.map(category => (
+						categories?.map((category) => (
 							<CardCategory6
 								className="p-4 transition-colors hover:bg-neutral-50 xl:p-5 dark:hover:bg-neutral-800"
 								key={category.databaseId}

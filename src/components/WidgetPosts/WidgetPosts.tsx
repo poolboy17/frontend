@@ -27,7 +27,7 @@ const WidgetPosts: FC<WidgetPostsProps> = ({
 						<Card3SmallSkeleton className="p-4 xl:px-5" />
 					</>
 				) : (
-					posts.map(post => (
+					posts.map((post) => (
 						<Card3Small
 							className="p-4 transition-colors hover:bg-neutral-50 xl:px-5 dark:hover:bg-neutral-800"
 							// @ts-ignore

@@ -19,13 +19,13 @@ const Components: FC<SectionMagazine1Props> = ({ posts, className = '' }) => {
 					<div className="grid gap-6 2xl:gap-7">
 						{posts
 							.filter((_, i) => i < 4 && i > 0)
-							.map(item => (
+							.map((item) => (
 								<Card6 key={item.databaseId} post={item} />
 							))}
 					</div>
 					{posts
 						.filter((_, i) => i >= 4)
-						.map(item => (
+						.map((item) => (
 							<Card6 key={item.databaseId} post={item} />
 						))}
 				</div>

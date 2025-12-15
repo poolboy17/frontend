@@ -21,7 +21,7 @@ const SectionMagazine3: FC<SectionMagazine3Props> = ({
 						<div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 							{posts
 								.filter((_, i) => i < 5 && i >= 1)
-								.map(item => (
+								.map((item) => (
 									<Card9
 										ratio="aspect-w-3 aspect-h-3"
 										key={item.databaseId}
@@ -34,7 +34,7 @@ const SectionMagazine3: FC<SectionMagazine3Props> = ({
 						<div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 							{posts
 								.filter((_, i) => i >= 5)
-								.map(item => (
+								.map((item) => (
 									<Card9
 										ratio="aspect-w-3 aspect-h-3"
 										key={item.databaseId}

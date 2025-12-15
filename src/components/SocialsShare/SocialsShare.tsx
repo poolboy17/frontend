@@ -43,7 +43,7 @@ const SocialsShare: FC<SocialsShareProps> = ({
 	itemClass = 'w-7 h-7 text-base hover:bg-neutral-100',
 	link = '',
 }) => {
-	const actions = SOCIALS_DATA.map(item => {
+	const actions = SOCIALS_DATA.map((item) => {
 		if (item.id === 'Facebook') {
 			item.href = `https://www.facebook.com/sharer/sharer.php?u=${link}`
 		} else if (item.id === 'Twitter') {

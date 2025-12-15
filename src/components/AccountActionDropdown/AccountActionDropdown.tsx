@@ -49,7 +49,7 @@ const AccountActionDropdown: FC<AccountActionDropdownProps> = ({
 
 	let actions = initActions
 	if (!canEditPost && viewer?.databaseId !== userDatabaseId) {
-		actions = initActions.filter(item => item.id !== 'edit')
+		actions = initActions.filter((item) => item.id !== 'edit')
 	}
 
 	const hanldeClickDropDown = (item: NcDropDownItem<AccountAction>) => {

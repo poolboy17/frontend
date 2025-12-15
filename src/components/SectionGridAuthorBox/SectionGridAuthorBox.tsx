@@ -15,7 +15,7 @@ const SectionGridAuthorBox: FC<SectionGridAuthorBoxProps> = ({
 	return (
 		<div className={`nc-SectionGridAuthorBox relative ${className}`}>
 			<div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5">
-				{authors.map(author => (
+				{authors.map((author) => (
 					<CardAuthorBox
 						// @ts-ignore
 						key={author.databaseId}

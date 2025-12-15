@@ -38,7 +38,7 @@ export default function SignUp() {
 				}
 			`),
 			{
-				onCompleted: data => {
+				onCompleted: (data) => {
 					if (data?.sendPasswordResetEmail?.success) {
 						toast.success(
 							T['A password reset link has been sent to your email'],
@@ -52,7 +52,7 @@ export default function SignUp() {
 						})
 					}
 				},
-				onError: error => {
+				onError: (error) => {
 					toast.error(error.message, {
 						position: 'bottom-center',
 					})
@@ -77,7 +77,7 @@ export default function SignUp() {
 			}
 		`),
 		{
-			onCompleted: data => {
+			onCompleted: (data) => {
 				console.log('User created successfully!', { data })
 
 				if (data?.registerUser?.user?.id) {
@@ -96,7 +96,7 @@ export default function SignUp() {
 					position: 'bottom-center',
 				})
 			},
-			onError: error => {
+			onError: (error) => {
 				if (typeof error.message !== 'string') {
 					toast.error(T['Something went wrong'], {
 						position: 'bottom-center',
@@ -155,7 +155,7 @@ export default function SignUp() {
 							type="text"
 							autoComplete="username"
 							required
-							onChange={e => setUsername(e.target.value)}
+							onChange={(e) => setUsername(e.target.value)}
 						/>
 					</div>
 					<div className="grid gap-1.5">
@@ -167,7 +167,7 @@ export default function SignUp() {
 							autoCorrect="off"
 							type="email"
 							required
-							onChange={e => setEmail(e.target.value)}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 					</div>
 

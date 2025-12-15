@@ -10,7 +10,8 @@ import { NC_SITE_SETTINGS } from '@/contains/site-settings'
 import { usePathname } from 'next/navigation'
 
 export interface PostCardLikeAndCommentProps
-	extends Omit<PostCardLikeActionProps, ''>,
+	extends
+		Omit<PostCardLikeActionProps, ''>,
 		Omit<PostCardCommentBtnProps, 'isATagOnSingle'> {
 	className?: string
 	itemClass?: string

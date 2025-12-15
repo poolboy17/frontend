@@ -1,8 +1,8 @@
 import { gql } from '@/__generated__'
 import {
-    NcgeneralSettingsFieldsFragmentFragment,
-    NcmazFcCategoryFullFieldsFragmentFragment,
-    SearchPageQueryGetCategoriesBySearchQuery,
+	NcgeneralSettingsFieldsFragmentFragment,
+	NcmazFcCategoryFullFieldsFragmentFragment,
+	SearchPageQueryGetCategoriesBySearchQuery,
 } from '@/__generated__/graphql'
 import ButtonPrimary from '@/components/Button/ButtonPrimary'
 import CardCategory4 from '@/components/CardCategory4/CardCategory4'
@@ -10,8 +10,8 @@ import Empty from '@/components/Empty'
 import PageLayout from '@/container/PageLayout'
 import SearchPageLayout from '@/container/SearchPageLayout'
 import {
-    GET_CATEGORIES_FIRST_COMMON,
-    REVALIDATE_TIME,
+	GET_CATEGORIES_FIRST_COMMON,
+	REVALIDATE_TIME,
 } from '@/contains/contants'
 import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
 import errorHandling from '@/utils/errorHandling'
@@ -64,9 +64,9 @@ const Page: FaustPage<SearchPageQueryGetCategoriesBySearchQuery> = (props) => {
 	// Apollo 3.14+ error handling: useEffect for errors
 	React.useEffect(() => {
 		if (getCategoriesBySearchResult.error) {
-			errorHandling(getCategoriesBySearchResult.error);
+			errorHandling(getCategoriesBySearchResult.error)
 		}
-	}, [getCategoriesBySearchResult.error]);
+	}, [getCategoriesBySearchResult.error])
 	const handleClickShowMore = () => {
 		if (!getCategoriesBySearchResult.called) {
 			return getCategoriesBySearch({

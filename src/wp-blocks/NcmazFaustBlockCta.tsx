@@ -7,9 +7,9 @@ import { WordPressBlock } from '@faustwp/blocks'
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 
-const NcmazFaustBlockCta: WordPressBlock<
-	NcmazFaustBlockCtaFragmentFragment
-> = props => {
+const NcmazFaustBlockCta: WordPressBlock<NcmazFaustBlockCtaFragmentFragment> = (
+	props,
+) => {
 	const { renderedHtml } = props || {}
 
 	const initErrorMessage = NC_SITE_SETTINGS.subcription_widget?.error_message
@@ -23,7 +23,7 @@ const NcmazFaustBlockCta: WordPressBlock<
 			variables: {
 				listId: NC_SITE_SETTINGS.mailpoet_list_id,
 			},
-			onCompleted: data => {
+			onCompleted: (data) => {
 				if (data?.ncmazFaustAddSubscriberToMailpoet?.success) {
 					toast.success(initSuccessMessage)
 					const successNode = blockRef.current?.querySelector(
@@ -49,7 +49,7 @@ const NcmazFaustBlockCta: WordPressBlock<
 					}
 				}
 			},
-			onError: error => {
+			onError: (error) => {
 				errorHandling(error)
 
 				const errorNode = blockRef.current?.querySelector(
@@ -99,7 +99,7 @@ const NcmazFaustBlockCta: WordPressBlock<
 		}
 
 		//  handle submit form here
-		subcribeFormNode.addEventListener('submit', e => {
+		subcribeFormNode.addEventListener('submit', (e) => {
 			e.preventDefault()
 			const email = subcribeFormNode.querySelector<HTMLInputElement>(
 				"input[type='email']",

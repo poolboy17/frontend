@@ -13,7 +13,7 @@ const SectionLargeSlider: FC<SectionLargeSliderProps> = ({
 	const [indexActive, setIndexActive] = useState(0)
 
 	const handleClickNext = () => {
-		setIndexActive(state => {
+		setIndexActive((state) => {
 			if (state >= posts.length - 1) {
 				return 0
 			}
@@ -22,7 +22,7 @@ const SectionLargeSlider: FC<SectionLargeSliderProps> = ({
 	}
 
 	const handleClickPrev = () => {
-		setIndexActive(state => {
+		setIndexActive((state) => {
 			if (state === 0) {
 				return posts.length - 1
 			}

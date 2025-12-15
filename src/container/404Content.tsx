@@ -49,7 +49,7 @@ export default function Page404Content() {
 					</p>
 					<div className="hidden sm:block sm:h-7 sm:w-px sm:flex-none sm:bg-gray-200 dark:bg-neutral-600" />
 					<div className="flex gap-x-4">
-						{NC_SITE_SETTINGS.site_socials?.map(item => (
+						{NC_SITE_SETTINGS.site_socials?.map((item) => (
 							<a
 								key={item?.name}
 								href={item?.url}

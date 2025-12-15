@@ -87,9 +87,9 @@ const NcmazFaustBlockMagazineClient: WordPressBlock<
 	// Apollo 3.14+ error handling: useEffect for errors
 	useEffect(() => {
 		if (getPostByVariablesFromSSRResult.error) {
-			errorHandling(getPostByVariablesFromSSRResult.error);
+			errorHandling(getPostByVariablesFromSSRResult.error)
 		}
-	}, [getPostByVariablesFromSSRResult.error]);
+	}, [getPostByVariablesFromSSRResult.error])
 
 	const T = getTrans()
 

@@ -48,7 +48,7 @@ const SectionMagazine11: FC<SectionMagazine11Props> = ({
 				<ul className="space-y-3">
 					{listPosts
 						.filter((_, i) => i > 0)
-						.map(post => (
+						.map((post) => (
 							<li key={post.databaseId}>
 								<h2 className="nc-card-title flex items-start space-x-4 font-medium rtl:space-x-reverse">
 									<Badge

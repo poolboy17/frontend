@@ -22,7 +22,7 @@ const SectionMagazine7: FC<SectionMagazine7Props> = ({
 				</div>
 				{subPosts.length && (
 					<div className="mt-3 grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-7 lg:grid-cols-3 xl:grid-cols-4">
-						{subPosts.map(item => (
+						{subPosts.map((item) => (
 							<Card10 post={item} key={item.databaseId} />
 						))}
 					</div>

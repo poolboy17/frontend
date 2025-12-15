@@ -17,14 +17,14 @@ const SectionMagazine5: FC<SectionMagazine5Props> = ({ posts }) => {
 					<div className="flex flex-col gap-5 md:gap-7">
 						{posts
 							.filter((_, i) => i < 4 && i > 0)
-							.map(item => (
+							.map((item) => (
 								<Card13 className="flex-1" key={item.databaseId} post={item} />
 							))}
 					</div>
 
 					{posts
 						.filter((_, i) => i >= 5)
-						.map(item => (
+						.map((item) => (
 							<Card13 className="flex-1" key={item.databaseId} post={item} />
 						))}
 				</div>

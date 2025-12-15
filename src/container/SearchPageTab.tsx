@@ -44,7 +44,7 @@ const Tab: FC<TabProps> = ({ currentTab, search }) => {
 	return (
 		<div className="flex overflow-hidden">
 			<ul className="inline-flex gap-x-8 text-sm font-medium sm:gap-x-10 xl:gap-x-12">
-				{TABS.map(item => {
+				{TABS.map((item) => {
 					const isActive = item.tab == (activeTab || '')
 					return (
 						<li key={item.tab}>

@@ -103,7 +103,7 @@ const MusicPlayer: FC<MusicPlayerProps> = ({}) => {
 		setPlaying(false)
 	}
 
-	const handleProgress: ReactPlayerProps['onProgress'] = state => {
+	const handleProgress: ReactPlayerProps['onProgress'] = (state) => {
 		// We only want to update time slider if we are not currently seeking
 		if (!seeking) {
 			setLoaded(state.loaded)
@@ -127,7 +127,7 @@ const MusicPlayer: FC<MusicPlayerProps> = ({}) => {
 			<DynamicPlayerContent
 				isLoading={isLoading}
 				isError={isError}
-				handleSetMuted={isMuted => setMuted(isMuted)}
+				handleSetMuted={(isMuted) => setMuted(isMuted)}
 				handleSeekMouseUp={handleSeekMouseUp}
 				handleSeekMouseDown={handleSeekMouseDown}
 				handleSeekChange={handleSeekChange}
@@ -159,9 +159,9 @@ const MusicPlayer: FC<MusicPlayerProps> = ({}) => {
 					onPlay={handlePlay}
 					onPause={handlePause}
 					onBuffer={() => console.log('onBuffer')}
-					onSeek={e => console.log('onSeek', e)}
+					onSeek={(e) => console.log('onSeek', e)}
 					onEnded={handleEnded}
-					onError={e => setIsError(true)}
+					onError={(e) => setIsError(true)}
 					onProgress={handleProgress}
 					onDuration={handleDuration}
 				/>

@@ -19,19 +19,19 @@ const SectionMagazine4: FC<SectionMagazine4Props> = ({
 					{posts[0] && <Card8 className="sm:col-span-2" post={posts[0]} />}
 					{posts
 						.filter((_, i) => i < 3 && i >= 1)
-						.map(item => (
+						.map((item) => (
 							<Card9 key={item.databaseId} post={item} />
 						))}
 					{posts
 						.filter((_, i) => i < 5 && i >= 3)
-						.map(item => (
+						.map((item) => (
 							<Card9 key={item.databaseId} post={item} />
 						))}
 					{posts[5] && <Card8 className="sm:col-span-2" post={posts[5]} />}
 
 					{posts
 						.filter((_, i) => i >= 6)
-						.map(item => (
+						.map((item) => (
 							<Card9 key={item.databaseId} post={item} />
 						))}
 				</div>

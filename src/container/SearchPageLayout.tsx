@@ -53,7 +53,7 @@ const SearchPageLayout: FC<Props> = ({
 					<form
 						className="relative"
 						action="#"
-						onSubmit={e => {
+						onSubmit={(e) => {
 							e.preventDefault()
 							const inputNode = document.getElementById(
 								'search-input',
@@ -95,10 +95,11 @@ const SearchPageLayout: FC<Props> = ({
 						true && (
 						<div className="mt-5 flex flex-wrap justify-center gap-2 text-center text-sm text-neutral-700 dark:text-neutral-200">
 							<p>
-								{NC_SITE_SETTINGS.search_page?.recommended_searches?.title}:{' '}
+								{NC_SITE_SETTINGS.search_page?.recommended_searches?.title}
+								:{' '}
 							</p>
 							{NC_SITE_SETTINGS.search_page?.recommended_searches?.items?.map(
-								item => (
+								(item) => (
 									<Link
 										className="underline-offset-2 hover:underline"
 										href={item?.url || '#'}

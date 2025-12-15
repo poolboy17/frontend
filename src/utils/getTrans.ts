@@ -1,9 +1,9 @@
-import en from "../../public/lang/en";
+import en from '../../public/lang/en'
 
 const getTrans = () => {
-  const trans = en;
+	const trans = en
 
-  return trans;
-};
+	return trans
+}
 
-export default getTrans;
+export default getTrans

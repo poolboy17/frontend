@@ -1,7 +1,7 @@
 import { gql } from '@/__generated__'
 import {
-    NcgeneralSettingsFieldsFragmentFragment,
-    SearchPageQueryGetUsersBySearchQuery,
+	NcgeneralSettingsFieldsFragmentFragment,
+	SearchPageQueryGetUsersBySearchQuery,
 } from '@/__generated__/graphql'
 import ButtonPrimary from '@/components/Button/ButtonPrimary'
 import CardAuthorBox from '@/components/CardAuthorBox/CardAuthorBox'
@@ -64,9 +64,9 @@ const Page: FaustPage<SearchPageQueryGetUsersBySearchQuery> = (props) => {
 	// Apollo 3.14+ error handling: useEffect for errors
 	React.useEffect(() => {
 		if (getUsersBySearchResult.error) {
-			errorHandling(getUsersBySearchResult.error);
+			errorHandling(getUsersBySearchResult.error)
 		}
-	}, [getUsersBySearchResult.error]);
+	}, [getUsersBySearchResult.error])
 
 	const handleClickShowMore = () => {
 		if (!getUsersBySearchResult.called) {

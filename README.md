@@ -1,6 +1,5 @@
 # Ncmaz - Next.js headless WordPress template.
 
-
 ## For more information
 
 For more information on this Blueprint please check out the following sources:
@@ -13,10 +12,13 @@ For more information on this Blueprint please check out the following sources:
 
 ### Contributor License Agreement
 
-All external contributors to WP Engine products must have a signed Contributor License Agreement (CLA) in place before the contribution may be accepted into any WP Engine codebase.
+All external contributors to WP Engine products must have a signed Contributor
+License Agreement (CLA) in place before the contribution may be accepted into
+any WP Engine codebase.
 
 1. [Submit your name and email](https://wpeng.in/cla/)
 2. 📝 Sign the CLA emailed to you
 3. 📥 Receive copy of signed CLA
 
-❤️ Thank you for helping us fulfill our legal obligations in order to continue empowering builders through headless WordPress.
+❤️ Thank you for helping us fulfill our legal obligations in order to continue
+empowering builders through headless WordPress.
