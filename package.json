@@ -23,9 +23,9 @@
   "prettier": "@epic-web/config/prettier",
   "dependencies": {
     "@apollo/client": "^3.14.0",
-    "@faustwp/blocks": "^6.1.5",
-    "@faustwp/cli": "^3.3.1",
-    "@faustwp/core": "^3.3.1",
+    "@faustwp/blocks": "^6.1.6",
+    "@faustwp/cli": "^3.3.4",
+    "@faustwp/core": "^3.3.4",
     "@headlessui/react": "^2.2.8",
     "@heroicons/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.9.0",
