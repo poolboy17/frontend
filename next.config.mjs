@@ -1,4 +1,4 @@
-import { withFaust, getWpHostname } from '@faustwp/core';
+import { getWpHostname, withFaust } from '@faustwp/core';
 import { createSecureHeaders } from 'next-secure-headers';
 import path from 'path';
 
