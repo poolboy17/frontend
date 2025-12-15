@@ -1,3 +1,6 @@
+  "engines": {
+    "node": ">=20.0.0 <21.0.0"
+  },
 {
   "name": "ncmaz-faust",
   "private": true,
@@ -16,7 +19,7 @@
   },
   "prettier": "@epic-web/config/prettier",
   "dependencies": {
-    "@apollo/client": "^3.13.8",
+    "@apollo/client": "^3.14.0",
     "@faustwp/blocks": "^6.1.5",
     "@faustwp/cli": "^3.3.1",
     "@faustwp/core": "^3.3.1",
