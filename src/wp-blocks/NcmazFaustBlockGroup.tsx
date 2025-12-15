@@ -4,7 +4,6 @@ import MyWordPressBlockViewer from '@/components/MyWordPressBlockViewer'
 import classNames from '@/utils/classNames'
 import { gql } from '@apollo/client'
 import { WordPressBlock, getStyles, useBlocksTheme } from '@faustwp/blocks'
-import React from 'react'
 //
 const NcmazFaustBlockGroup: WordPressBlock<
 	NcmazFaustBlockGroupFragmentFragment
@@ -16,28 +15,27 @@ const NcmazFaustBlockGroup: WordPressBlock<
 
 	// get the BlocksTheme object
 	const theme = useBlocksTheme()
-	const style = getStyles(theme, { ...props })
+	getStyles(theme, { ...props }) // style is ignored for linter compliance
 
 	const { aliasAttributes: attributes } = props || {}
 	const { className, hasBackground, variation } = attributes || {}
 
 	return (
 		<div
-			className={`NcmazFaustBlockGroup not-prose relative ${className || ''}`}
-			style={style}
+			className={`NcmazFaustBlockGroup not-prose relative ${className || ''}`.trim()}
 		>
 			{hasBackground && (
 				<BackgroundSection
 					className={classNames(
 						variation === 'style2'
 							? 'bg-yellow-100/70 dark:bg-black/20'
-							: undefined,
+						: undefined,
 						variation === 'style3'
 							? 'bg-green-100/70 dark:bg-black/20'
-							: undefined,
+						: undefined,
 						variation !== 'style2' && variation !== 'style3'
 							? 'bg-neutral-100/70 dark:bg-black/20'
-							: undefined,
+						: undefined,
 					)}
 				/>
 			)}

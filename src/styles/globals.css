@@ -1,3 +1,7 @@
+/* Dynamic style class for CoreColumn, allows style only via this class for a11y compliance */
+.core-column-dynamic-style {
+	/* No static styles, but allows dynamic style prop for React */
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

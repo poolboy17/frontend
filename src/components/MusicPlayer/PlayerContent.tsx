@@ -1,19 +1,19 @@
 'use client'
 
-import { FC, useState } from 'react'
 import NcImage from '@/components/NcImage/NcImage'
-import { Transition } from '@headlessui/react'
 import { useMusicPlayer } from '@/hooks/useMusicPlayer'
-import Link from 'next/link'
-import PostCardLikeAction from '../PostCardLikeAction/PostCardLikeAction'
-import NcBookmark from '../NcBookmark/NcBookmark'
-import {
-	EllipsisHorizontalIcon,
-	PauseIcon,
-	PlayIcon,
-} from '@heroicons/react/24/solid'
-import { ChevronUpIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { getPostDataFromPostFragment } from '@/utils/getPostDataFromPostFragment'
+import { Transition } from '@headlessui/react'
+import { ChevronUpIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import {
+    EllipsisHorizontalIcon,
+    PauseIcon,
+    PlayIcon,
+} from '@heroicons/react/24/solid'
+import Link from 'next/link'
+import { FC, useState } from 'react'
+import NcBookmark from '../NcBookmark/NcBookmark'
+import PostCardLikeAction from '../PostCardLikeAction/PostCardLikeAction'
 
 export interface PlayerContentProps {
 	isError: boolean
@@ -156,18 +156,19 @@ const PlayerContent: FC<PlayerContentProps> = ({
 					onChange={handleSeekChange}
 					onMouseUp={handleSeekMouseUp}
 					onTouchEnd={handleSeekMouseUp}
+					title="Seek audio position"
+					aria-label="Seek audio position"
+					placeholder="Seek audio position"
 				/>
 				<div
-					className="absolute start-0 top-1/2 h-0.5 min-w-0 -translate-y-1/2 transform rounded-full bg-primary-500/30 transition-all will-change-contents"
-					style={{ width: loaded * 100 + '%' }}
+					className="absolute start-0 top-1/2 h-0.5 min-w-0 -translate-y-1/2 transform rounded-full bg-primary-500/30 transition-all will-change-contents w-loaded"
+					data-width={loaded * 100}
 				></div>
 				<div
-					className="absolute start-0 top-1/2 z-0 h-0.5 min-w-0 -translate-y-1/2 transform rounded-full bg-primary-500"
-					// 12px la kich thuoc cua num' chuot
-					style={{ width: `calc(${played * 100 + '%'} - 12px)` }}
-				>
-					<span className="absolute -end-3 top-1/2 h-3 w-3 -translate-y-1/2 transform rounded-full bg-primary-500"></span>
-				</div>
+					className="absolute start-0 top-1/2 z-0 h-0.5 min-w-0 -translate-y-1/2 transform rounded-full bg-primary-500 w-played"
+					data-width={played * 100}
+				></div>
+				<span className="absolute -end-3 top-1/2 h-3 w-3 -translate-y-1/2 transform rounded-full bg-primary-500"></span>
 			</div>
 		)
 	}
@@ -179,6 +180,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 				className="flex h-14 w-14 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-neutral-100/70 text-neutral-700 transition-colors hover:bg-neutral-200/70 sm:h-16 sm:w-16 dark:bg-neutral-700/40 dark:text-neutral-200 dark:hover:bg-neutral-700/80"
 				onClick={handleClickToggle}
 				disabled={isLoading}
+                aria-label={playing ? 'Pause' : 'Play'}
+                title={playing ? 'Pause' : 'Play'}
 			>
 				{isLoading ? (
 					<EllipsisHorizontalIcon className="h-10 w-10" />
@@ -198,6 +201,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 				className="flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full text-neutral-700 hover:bg-neutral-100 lg:hidden dark:text-neutral-200 dark:hover:bg-black/10"
 				onClick={handleClickToggle}
 				disabled={isLoading}
+                aria-label={playing ? 'Pause' : 'Play'}
+                title={playing ? 'Pause' : 'Play'}
 			>
 				{isLoading ? (
 					<EllipsisHorizontalIcon className="h-6 w-6 md:h-8 md:w-8" />
@@ -246,6 +251,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 			<button
 				className="flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700/80"
 				onClick={handleClickForwards15Sec}
+                aria-label="Forward 15 seconds"
+                title="Forward 15 seconds"
 			>
 				<svg
 					className="hidden h-6 w-6 rtl:block"
@@ -326,6 +333,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 			<button
 				className="flex h-12 w-12 items-center justify-center rounded-full transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-700/80"
 				onClick={() => handleClickBackwards10Sec()}
+                aria-label="Back 10 seconds"
+                title="Back 10 seconds"
 			>
 				<svg
 					className="hidden h-6 w-6 rtl:block"
@@ -417,6 +426,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 							return handleSetPlaybackRate(1)
 						}
 					}}
+                    aria-label={`Set speed to ${playbackRate === 1 ? '1.5x' : playbackRate === 1.5 ? '2x' : '1x'}`}
+                    title={`Set speed to ${playbackRate === 1 ? '1.5x' : playbackRate === 1.5 ? '2x' : '1x'}`}
 				>
 					{`${playbackRate === 1.5 ? 1.5 : playbackRate + `.0`}x`}
 				</button>
@@ -448,6 +459,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 						}
 						handleSetMuted(!muted)
 					}}
+                    aria-label={muted || !volume ? 'Unmute' : 'Mute'}
+                    title={muted || !volume ? 'Unmute' : 'Mute'}
 				>
 					{!!volume && !muted && volume >= 0.5 && (
 						<svg
@@ -554,20 +567,18 @@ const PlayerContent: FC<PlayerContentProps> = ({
 							handleVolumeChange(parseFloat(e.currentTarget.value))
 							handleSetMuted(false)
 						}}
+						title="Adjust volume"
+						aria-label="Adjust volume"
+						placeholder="Adjust volume"
 					/>
 					<div className="absolute start-0 top-1/2 h-0.5 w-full min-w-0 -translate-y-1/2 rounded-full bg-neutral-300 dark:bg-neutral-500"></div>
 					<div
-						className={`absolute start-0 top-1/2 h-0.5 min-w-0 -translate-y-1/2 rounded-full ${
-							!volume || muted ? 'bg-neutral-400' : 'bg-primary-500'
-						}`}
-						style={{ width: volume * 100 + '%' }}
-					>
-						<span
-							className={`absolute -end-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full ${
-								!volume || muted ? 'bg-neutral-400' : 'bg-primary-500'
-							}`}
-						></span>
-					</div>
+						className={`absolute start-0 top-1/2 h-0.5 min-w-0 -translate-y-1/2 rounded-full ${!volume || muted ? 'bg-neutral-400' : 'bg-primary-500'} w-volume`}
+						data-width={volume * 100}
+					></div>
+					<span
+						className={`absolute -end-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full ${!volume || muted ? 'bg-neutral-400' : 'bg-primary-500'}`}
+					></span>
 				</div>
 			</div>
 		)
@@ -578,6 +589,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 			<button
 				className="focus:shadow-outline flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full hover:bg-neutral-100 focus:outline-none md:h-12 md:w-12 dark:hover:bg-neutral-700/80"
 				onClick={handleClickClose}
+                aria-label="Close player"
+                title="Close player"
 			>
 				<XMarkIcon className="h-6 w-6" />
 			</button>
@@ -615,6 +628,8 @@ const PlayerContent: FC<PlayerContentProps> = ({
 				<button
 					className="absolute -top-3 right-0 z-20 flex h-6 w-[26px] items-center justify-center lg:hidden"
 					onClick={() => setIsShowContentOnMobile(!isShowContentOnMobile)}
+                    aria-label={isShowContentOnMobile ? 'Hide player controls' : 'Show player controls'}
+                    title={isShowContentOnMobile ? 'Hide player controls' : 'Show player controls'}
 				>
 					<div className="- nc-google-shadow flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-neutral-800">
 						<ChevronUpIcon

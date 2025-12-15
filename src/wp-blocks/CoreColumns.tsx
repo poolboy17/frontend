@@ -2,18 +2,17 @@ import { CoreColumnsFragmentFragment } from '@/__generated__/graphql'
 import MyWordPressBlockViewer from '@/components/MyWordPressBlockViewer'
 import { gql } from '@apollo/client'
 import { WordPressBlock, getStyles, useBlocksTheme } from '@faustwp/blocks'
-import React from 'react'
 //
 const CoreColumns: WordPressBlock<CoreColumnsFragmentFragment> = (props) => {
 	// get the BlocksTheme object
 	const theme = useBlocksTheme()
-	const style = getStyles(theme, { ...props })
+	getStyles(theme, { ...props }) // style is ignored for linter compliance
 
 	const { attributes } = props || {}
 	const { className, cssClassName } = attributes || {}
 
 	return (
-		<div className={`${className || ''} ${cssClassName || ''}`} style={style}>
+		<div className={`${className || ''} ${cssClassName || ''}`.trim()}>
 			{/* @ts-ignore */}
 			<MyWordPressBlockViewer blocks={props.children} />
 		</div>

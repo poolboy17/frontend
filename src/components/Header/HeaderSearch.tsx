@@ -1,7 +1,7 @@
 import getTrans from '@/utils/getTrans'
 import { useRouter } from 'next/router'
-import Input from '../Input/Input'
 import { SearchIcon } from '../Icons/Icons'
+import Input from '../Input/Input'
 import SearchModal from './SearchModal'
 
 export const HeaderSearchForm = () => {
@@ -9,7 +9,7 @@ export const HeaderSearchForm = () => {
 	const renderTrigger = () => {
 		return (
 			<div className="group relative cursor-pointer">
-				<button className="absolute inset-0"></button>
+				<button className="absolute inset-0" aria-label={T['Open search']} title={T['Open search']}></button>
 				<Input
 					type="text"
 					placeholder={T['Type to search...']}
@@ -52,6 +52,8 @@ export const HeaderSearchForm2 = () => {
 				<button
 					type="submit"
 					className="absolute inset-y-0 end-0 flex items-center justify-center rounded-full pe-3 ps-2 text-neutral-500 dark:text-neutral-400"
+                    aria-label={T['Submit search']}
+                    title={T['Submit search']}
 				>
 					<SearchIcon className="h-5 w-5" />
 				</button>
@@ -70,7 +72,7 @@ export const SearchIconBtn = ({
 	const renderTrigger = () => {
 		return (
 			<div className={`relative block self-center ${className}`}>
-				<button className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-700 hover:bg-neutral-100 focus:outline-none sm:h-12 sm:w-12 dark:text-neutral-300 dark:hover:bg-neutral-800">
+				<button className="flex h-10 w-10 items-center justify-center rounded-full text-neutral-700 hover:bg-neutral-100 focus:outline-none sm:h-12 sm:w-12 dark:text-neutral-300 dark:hover:bg-neutral-800" aria-label={getTrans()['Open search']} title={getTrans()['Open search']}>
 					<SearchIcon className="h-5 w-5" />
 				</button>
 			</div>
